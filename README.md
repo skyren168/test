@@ -1,172 +1,182 @@
-# 每日信息简报系统
+# 🚀 每日信息简报系统
 
-一个自动化的每日信息简报系统，定时获取北京地区天气、生活指数、黄历、尾号限行等信息，并在上午9点推送到微信公众号。
+## 📋 项目概述
 
-## 功能特性
+一个自动化的每日信息简报系统，为用户提供北京地区的天气、生活指数、黄历和尾号限行信息。
 
-- 🌤️ **北京天气信息**：实时温度、天气状况、湿度、风力
-- 📊 **生活指数**：穿衣、紫外线、洗车、感冒、运动、空气质量
-- 📅 **今日黄历**：农历日期、宜忌事项、生肖星宿
-- 🚗 **尾号限行**：北京地区当日限行尾号、时间、区域
-- ⏰ **定时推送**：每天上午9点自动执行
-- 💬 **微信公众号集成**：支持模板消息推送
+**支持的推送方式：**
+- 📱 **微信小程序** - 订阅消息推送
+- 🚀 **Rocket** - 团队协作平台推送
 
-## 系统架构
+**推送时间：** 每天上午8:00
 
-```
-├── daily_briefing.py    # 主程序
-├── config.py           # 配置文件
-├── deploy.py           # 部署脚本
-├── requirements.txt    # 依赖包
-├── .env.example       # 环境变量示例
-└── README.md          # 说明文档
-```
+## 🎯 功能特点
 
-## 快速开始
+### 🌤️ 天气信息
+- 实时温度
+- 天气状况
+- 湿度
+- 风力
 
-### 1. 环境要求
+### 📊 生活指数
+- 穿衣指数
+- 紫外线指数
+- 空气质量指数
 
-- Python 3.7+
-- pip 包管理器
+### 📅 今日黄历
+- 农历日期
+- 宜做事项
+- 忌做事项
 
-### 2. 安装依赖
+### 🚗 尾号限行
+- 当日限行尾号
+- 限行时间
+- 限行区域
 
+## 🚀 快速开始
+
+### 方法1：使用Rocket推送（推荐）
+
+**配置说明：**
+- 个人访问令牌：`qxxUtal9ejPn5IRnM-VxISCjsfd-XJCDGsFTF6EwARC`
+- 用户ID：`mkvGvyyAjT5x4d8xt`
+- 推送频道：`每日黄历`
+
+**启动方式：**
 ```bash
-pip install -r requirements.txt
+# 启动Rocket版系统
+chmod +x start_rocket.sh
+./start_rocket.sh
 ```
 
-### 3. 配置参数
+### 方法2：使用微信小程序推送
 
-复制环境变量配置文件：
+**配置说明：**
+- 参考 `MINI_PROGRAM_CONFIG_GUIDE.md`
 
+**启动方式：**
 ```bash
-cp .env.example .env
+# 启动小程序版系统
+chmod +x start_miniprogram.sh
+./start_miniprogram.sh
 ```
 
-编辑 `.env` 文件，配置以下参数：
+## 📁 项目结构
 
-```env
-# 微信公众号配置
-WECHAT_APP_ID=your_wechat_app_id
-WECHAT_APP_SECRET=your_wechat_app_secret
-WECHAT_TEMPLATE_ID=your_template_id
-
-# 天气API配置（可选，使用和风天气API）
-WEATHER_API_KEY=your_weather_api_key
+```
+.
+├── daily_briefing_rocket.py        # Rocket版主程序
+├── daily_briefing_miniprogram.py    # 小程序版主程序
+├── rocket_push.py                  # Rocket推送模块
+├── miniprogram_config.py           # 小程序配置
+├── start_rocket.sh                 # Rocket版启动脚本
+├── start_miniprogram.sh            # 小程序版启动脚本
+├── requirements.txt                # Python依赖
+├── vercel_deployment/              # Vercel部署文件
+└── 各种工具和指南文件
 ```
 
-### 4. 部署和测试
+## 🔧 系统配置
 
-```bash
-python deploy.py
-```
+### Rocket配置
 
-### 5. 启动系统
-
-```bash
-python daily_briefing.py
-```
-
-## API 配置说明
-
-### 微信公众号配置
-
-1. 注册微信公众平台账号
-2. 获取 AppID 和 AppSecret
-3. 创建消息模板，获取 Template ID
-
-### 天气API配置（可选）
-
-系统默认使用模拟数据，如需真实天气数据：
-
-1. 注册和风天气开发者账号
-2. 获取 API Key
-3. 在 `.env` 文件中配置 `WEATHER_API_KEY`
-
-## 定时任务
-
-系统使用 `schedule` 库实现定时任务：
-
-- **执行时间**：每天上午 9:00
-- **任务内容**：获取所有信息并推送到微信公众号
-- **调度方式**：每分钟检查一次任务状态
-
-## 自定义配置
-
-在 `config.py` 中可以修改以下配置：
+在 `rocket_push.py` 中配置：
 
 ```python
-# 定时任务时间
-SCHEDULE_TIME = "09:00"
-
-# 日志级别
-LOG_LEVEL = "INFO"
-
-# 重试次数
-MAX_RETRY = 3
+class RocketConfig:
+    # Rocket配置
+    ROCKET_TOKEN = "qxxUtal9ejPn5IRnM-VxISCjsfd-XJCDGsFTF6EwARC"
+    ROCKET_USER_ID = "mkvGvyyAjT5x4d8xt"
+    ROCKET_CHANNEL = "每日黄历"
+    ROCKET_SERVER_URL = "https://rocket.example.com/api/v1"  # 替换为实际地址
 ```
 
-## 消息格式示例
+### 推送时间配置
 
-```
-🌅 早安！今日信息简报 (2024-01-15 09:00)
+默认推送时间为每天上午8:00，可在对应主程序中修改：
 
-🌤️ 北京天气
-• 温度：8℃
-• 天气：晴
-• 湿度：45%
-• 风力：北风3级
+```python
+# Rocket版
+schedule.every().day.at("08:00").do(self.daily_task)
 
-📊 生活指数
-• 穿衣：较舒适
-• 紫外线：中等
-• 洗车：适宜
-• 感冒：少发
-• 运动：适宜
-• 空气质量：良
-
-📅 今日黄历
-• 日期：2024年01月15日
-• 农历：农历腊月廿三
-• 宜：祭祀、祈福、求嗣、开光、出行
-• 忌：破土、安葬、作灶
-• 生肖：龙
-• 星宿：心宿
-
-🚗 尾号限行
-• 日期：2024年01月15日 周一
-• 限行尾号：1、6
-• 限行时间：7:00-20:00
-• 限行区域：五环路以内道路（不含五环路）
-
-💡 温馨提示：注意天气变化，合理安排出行！
+# 小程序版
+SCHEDULE_TIME = "08:00"  # 在miniprogram_config.py中
 ```
 
-## 扩展功能
+## 📦 依赖安装
 
-系统支持以下扩展：
+```bash
+# 安装Python依赖
+pip3 install -r requirements.txt
+```
 
-1. **添加新的数据源**：在 `DailyBriefing` 类中添加新的数据获取方法
-2. **自定义消息模板**：修改 `format_briefing_message` 方法
-3. **多地区支持**：修改天气API的地区代码
-4. **多平台推送**：扩展推送接口支持企业微信、钉钉等
+## 🎉 系统功能验证
 
-## 故障排除
+### 测试Rocket推送
 
-### 常见问题
+```bash
+# 运行测试
+python3 rocket_push.py
+```
 
-1. **依赖安装失败**：检查Python版本和网络连接
-2. **微信公众号推送失败**：检查AppID和AppSecret配置
-3. **天气数据获取失败**：检查API密钥或网络连接
+### 测试完整功能
 
-### 日志查看
+```bash
+# 运行Rocket版系统
+python3 daily_briefing_rocket.py
+```
 
-系统运行日志保存在控制台输出，可通过修改 `LOG_LEVEL` 调整日志级别。
+## 💡 注意事项
 
-## 许可证
+### Rocket推送
+- 需要配置正确的Rocket服务器地址
+- 确保令牌和用户ID有效
+- 确保"每日黄历"频道存在
 
-MIT License
+### 微信小程序推送
+- 需要完成接口验证
+- 需要用户授权订阅消息
+- 需要正确的模板ID
 
-## 贡献
+## 🚀 部署方案
 
-欢迎提交 Issue 和 Pull Request！
+### 本地部署
+
+```bash
+# 直接运行
+./start_rocket.sh  # Rocket版
+# 或
+./start_miniprogram.sh  # 小程序版
+```
+
+### 云平台部署
+
+**使用Vercel（免费）：**
+- 参考 `vercel_deployment/README.md`
+
+**使用Docker：**
+- 可创建Dockerfile进行容器化部署
+
+## 📝 版本历史
+
+- **v1.0** - 初始版本（微信小程序推送）
+- **v2.0** - 添加Rocket推送支持
+- **v2.1** - 优化消息格式，调整推送时间为8:00
+
+## 🎯 系统状态
+
+✅ **核心功能全部正常**
+- 天气信息获取
+- 生活指数获取
+- 黄历信息获取
+- 尾号限行获取
+- 消息格式化
+- 定时任务调度
+
+✅ **推送功能**
+- Rocket推送（已配置）
+- 微信小程序推送（可选）
+
+---
+
+**系统已经准备就绪，等待您的启动！** 🎉
