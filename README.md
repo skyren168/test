@@ -33,6 +33,20 @@
 - 限行时间
 - 限行区域
 
+### ✨ 星座运势
+- 今日星座
+- 整体运势
+- 爱情运势
+- 事业运势
+- 财运运势
+- 健康运势
+
+### 🧘 易经智慧
+- 今日卦象
+- 卦象寓意
+- 幸运数字
+- 幸运颜色
+
 ## 🚀 快速开始
 
 ### 方法1：使用Rocket推送（推荐）
@@ -68,6 +82,7 @@ chmod +x start_miniprogram.sh
 ├── daily_briefing_rocket.py        # Rocket版主程序
 ├── daily_briefing_miniprogram.py    # 小程序版主程序
 ├── rocket_push.py                  # Rocket推送模块
+├── image_generator.py              # 图片生成模块
 ├── miniprogram_config.py           # 小程序配置
 ├── start_rocket.sh                 # Rocket版启动脚本
 ├── start_miniprogram.sh            # 小程序版启动脚本
@@ -162,6 +177,7 @@ python3 daily_briefing_rocket.py
 - **v1.0** - 初始版本（微信小程序推送）
 - **v2.0** - 添加Rocket推送支持
 - **v2.1** - 优化消息格式，调整推送时间为8:00
+- **v2.2** - 添加星座运势和易经智慧内容
 
 ## 🎯 系统状态
 
@@ -170,6 +186,8 @@ python3 daily_briefing_rocket.py
 - 生活指数获取
 - 黄历信息获取
 - 尾号限行获取
+- 星座运势获取
+- 易经智慧获取
 - 消息格式化
 - 定时任务调度
 
