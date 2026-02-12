@@ -1,0 +1,10 @@
+# 用户openid列表文件
+# 每行一个用户的openid
+# 以#开头的行是注释
+
+# 示例openid（需要替换为实际用户openid）
+o6_bmjrPTlm6_2sgVt7hMZOPfL2M
+
+# 添加更多用户openid：
+# o6_bmjrPTlm6_2sgVt7hMZOPfL2N
+# o6_bmjrPTlm6_2sgVt7hMZOPfL2OovIkE3fBqoRgo1r0TOlFL6acCSXo
