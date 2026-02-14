@@ -147,35 +147,56 @@ class RocketPush:
         today = datetime.now().strftime("%Y年%m月%d日")
         
         message = f"""
+【每日信息简报】
+📅 {today}
 
-【高端每日信息简报】
-📅 日期：{today}
+--------------------
+【天气】
+🌤️ 天气：{weather.get('weather', '未知')}
+🌡️ 温度：{weather.get('temperature', '未知')}
+💧 湿度：{weather.get('humidity', '未知')}
+💨 风力：{weather.get('wind', '未知')}
 
-【限行提醒】
-🚫 限行：{', '.join(map(str, traffic.get('restricted_numbers', []))) if traffic.get('restricted_numbers') else '不限行'}
-⏰ 时间：7:00-20:00
-📍 区域：五环路以内
+--------------------
+【生活指数】
+👔 穿衣：{life_index.get('dressing', '未知')}
+☀️ 紫外线：{life_index.get('uv', '未知')}
+🚗 洗车：{life_index.get('car_washing', '未知')}
+🤧 感冒：{life_index.get('cold', '未知')}
+🏃 运动：{life_index.get('sport', '未知')}
+🌬️ 空气：{life_index.get('air_quality', '未知')}
 
-【星座运势】
----------------------------------------
-⭐ 今日星座：{constellation.get('constellation', '未知') if constellation else '未知'}
-🌟 整体运势：{constellation.get('overall', '未知') if constellation else '未知'}
-💖 爱情运势：{constellation.get('love', '未知') if constellation else '未知'}
-💼 事业运势：{constellation.get('career', '未知') if constellation else '未知'}
-💰 财运运势：{constellation.get('wealth', '未知') if constellation else '未知'}
-🧘 健康运势：{constellation.get('health', '未知') if constellation else '未知'}
+--------------------
+【黄历】
+📅 农历：{almanac.get('lunar', '未知')}
+🐉 生肖：{almanac.get('zodiac', '未知')}
+✅ 宜：{almanac.get('suitable', '未知')}
+❌ 忌：{almanac.get('avoid', '未知')}
 
-【易经智慧】
----------------------------------------
-🔮 今日卦象：{i_ching.get('hexagram', '未知') if i_ching else '未知'}
-🌅 卦象寓意：{i_ching.get('meaning', '未知') if i_ching else '未知'}
+--------------------
+【限行】
+🚫 {', '.join(map(str, traffic.get('restricted_numbers', []))) if traffic.get('restricted_numbers') else '不限行'}
+⏰ 7:00-20:00 | 📍 五环路以内
+
+--------------------
+【星座】
+⭐ {constellation.get('constellation', '未知') if constellation else '未知'}
+🌟 整体：{constellation.get('overall', '未知') if constellation else '未知'}
+💖 爱情：{constellation.get('love', '未知') if constellation else '未知'}
+💼 事业：{constellation.get('career', '未知') if constellation else '未知'}
+💰 财运：{constellation.get('wealth', '未知') if constellation else '未知'}
+🧘 健康：{constellation.get('health', '未知') if constellation else '未知'}
+
+--------------------
+【易经】
+🔮 卦象：{i_ching.get('hexagram', '未知') if i_ching else '未知'}
+🌅 寓意：{i_ching.get('meaning', '未知') if i_ching else '未知'}
 🔢 幸运数字：{i_ching.get('lucky_number', '未知') if i_ching else '未知'}
 🎨 幸运颜色：{i_ching.get('lucky_color', '未知') if i_ching else '未知'}
 
-【每日寄语】
+--------------------
+【寄语】
 愿您的每一天都充满阳光与希望，事业有成，家庭幸福！
-
-高端每日信息简报 | 为您精心定制
 """
         
         return message
